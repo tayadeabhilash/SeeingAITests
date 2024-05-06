@@ -1,4 +1,4 @@
-package com.seeingaitests;
+package com.seeingaitests.demo;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
@@ -31,7 +31,6 @@ public class CatTest {
         URL url = new URL("http://127.0.0.1:4723/");
         driver = new AppiumDriver(url, capabilities);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        XmlSuite suite = new XmlSuite();
     }
 
     @Test
