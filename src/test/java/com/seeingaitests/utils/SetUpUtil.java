@@ -39,7 +39,7 @@ public class SetUpUtil {
     }
 
     public static String getResults(WebDriverWait wait, String expectedResult) {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("com.microsoft.seeingai:id/result_cell_text")));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@resource-id=\"com.microsoft.seeingai:id/result_cell_text\"]")));
         String actualResult = element.getText();
         System.out.println("Expected Result: " + expectedResult);
         System.out.println("Actual Result: " + actualResult);
@@ -96,11 +96,10 @@ public class SetUpUtil {
     }
 
     public static void sharePhoto(WebDriverWait wait) {
-        WebElement shareButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.id("com.google.android.apps.photos:id/share")));
+        WebElement shareButton2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@resource-id=\"com.google.android.apps.photos:id/button_label\" and @text=\"Share\"]")));
         shareButton2.click();
         WebElement appToShare = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@resource-id=\"com.google.android.apps.photos:id/text\" and @text=\"SeeingAI\"]")));
         appToShare.click();
-        System.out.println("Sharing Image to SeeingAI");
     }
 
     public static void goBack(WebDriverWait wait) {
@@ -119,5 +118,17 @@ public class SetUpUtil {
                 "percent", 1.0
         ));
         System.out.println("Swiped to next Image");
+    }
+
+    public static void scrollDown(AppiumDriver driver, WebDriverWait wait) {
+        WebElement sendScroll = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.support.v7.widget.RecyclerView[@resource-id=\"com.google.android.apps.photos:id/recycler_view\"]")));
+
+        driver.executeScript("mobile: scrollGesture", ImmutableMap.of(
+                "elementId", sendScroll,
+                "left", 850, "top", 1805, "width", 200, "height", 200,
+                "direction", "down",
+                "percent", 1.0
+        ));
+        System.out.println("Scrolled Down");
     }
 }

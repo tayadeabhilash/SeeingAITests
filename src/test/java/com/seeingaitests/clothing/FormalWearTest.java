@@ -22,7 +22,7 @@ public class FormalWearTest {
     private WebDriverWait wait;
 
     @BeforeSuite
-    public void setUp() throws MalformedURLException {
+    public void setUp() {
         driver = SetUpUtil.getDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         SetUpUtil.skipButton(wait);

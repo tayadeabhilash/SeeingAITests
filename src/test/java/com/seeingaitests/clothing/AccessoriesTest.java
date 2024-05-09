@@ -1,12 +1,10 @@
 package com.seeingaitests.clothing;
 
-import com.google.common.collect.ImmutableMap;
 import com.seeingaitests.utils.SetUpUtil;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -15,14 +13,9 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
-public class OuterwearTest {
+public class AccessoriesTest {
 
     private AppiumDriver driver;
 
@@ -42,46 +35,46 @@ public class OuterwearTest {
     }
 
     @Test(priority = 1)
-    public void testVest() {
+    public void testOrangeHat() {
         SetUpUtil.sharePhoto(wait);
-        String expectedResult = "vest";
+        String expectedResult = "Orange Hat";
         String actualResult = SetUpUtil.getResults(wait, expectedResult);
         SetUpUtil.goBack(wait);
         SetUpUtil.swipeToNextImage(driver, wait);
         Assert.assertTrue(actualResult.toLowerCase().contains(expectedResult.toLowerCase()));
     }
 
-    @Test(priority = 5)
-    public void testCoat() {
+    @Test(priority = 2)
+    public void testSocks() {
         SetUpUtil.sharePhoto(wait);
-        String expectedResult = "grey coat";
-        String actualResult = SetUpUtil.getResults(wait, expectedResult);
-        SetUpUtil.goBack(wait);
-        SetUpUtil.swipeToNextImage(driver, wait);
-        Assert.assertTrue(actualResult.toLowerCase().contains(expectedResult.toLowerCase()));
-    }
-    @Test(priority = 4)
-    public void testBrownJacket() {
-        SetUpUtil.sharePhoto(wait);
-        String expectedResult = "brown jacket";
+        String expectedResult = "socks";
         String actualResult = SetUpUtil.getResults(wait, expectedResult);
         SetUpUtil.goBack(wait);
         SetUpUtil.swipeToNextImage(driver, wait);
         Assert.assertTrue(actualResult.toLowerCase().contains(expectedResult.toLowerCase()));
     }
     @Test(priority = 3)
-    public void testWhiteJacket() {
+    public void testTies() {
         SetUpUtil.sharePhoto(wait);
-        String expectedResult = "white jacket";
+        String expectedResult = "ties";
         String actualResult = SetUpUtil.getResults(wait, expectedResult);
         SetUpUtil.goBack(wait);
         SetUpUtil.swipeToNextImage(driver, wait);
         Assert.assertTrue(actualResult.toLowerCase().contains(expectedResult.toLowerCase()));
     }
-    @Test(priority = 2)
-    public void testBlackJacket() {
+    @Test(priority = 4)
+    public void testScarf() {
         SetUpUtil.sharePhoto(wait);
-        String expectedResult = "black jacket";
+        String expectedResult = "red scarf";
+        String actualResult = SetUpUtil.getResults(wait, expectedResult);
+        SetUpUtil.goBack(wait);
+        SetUpUtil.swipeToNextImage(driver, wait);
+        Assert.assertTrue(actualResult.toLowerCase().contains(expectedResult.toLowerCase()));
+    }
+    @Test(priority = 5)
+    public void testHat() {
+        SetUpUtil.sharePhoto(wait);
+        String expectedResult = "yellow hat";
         String actualResult = SetUpUtil.getResults(wait, expectedResult);
         SetUpUtil.goBack(wait);
         SetUpUtil.swipeToNextImage(driver, wait);
@@ -92,7 +85,6 @@ public class OuterwearTest {
     public void tearDown() {
         ((AndroidDriver) driver).terminateApp("com.google.android.apps.photos");
         ((AndroidDriver) driver).terminateApp("com.microsoft.seeingai");
-        // Quit the driver
         driver.quit();
     }
 
@@ -101,13 +93,13 @@ public class OuterwearTest {
         photosApp.click();
         System.out.println("In Photos App");
 
-        WebElement outisde = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Button[@resource-id=\"com.google.android.apps.photos:id/negative_button\"]")));
-        outisde.click();
+        WebElement outside = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Button[@resource-id=\"com.google.android.apps.photos:id/negative_button\"]")));
+        outside.click();
 
-        WebElement outerwear = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@resource-id=\"com.google.android.apps.photos:id/collection_title\" and @text=\"Outerwear\"]")));
-        outerwear.click();
+        WebElement tops = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@resource-id=\"com.google.android.apps.photos:id/collection_title\" and @text=\"accessories\"]")));
+        tops.click();
 
-        WebElement photo1 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.ViewGroup[@content-desc=\"Photo taken on May 5, 2024 6:54:04 PM\"]")));
+        WebElement photo1 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//android.view.ViewGroup[@content-desc=\"Photo taken on May 8, 2024 2:04:22 PM\"])[1]")));
         photo1.click();
     }
 }
