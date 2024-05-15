@@ -1,5 +1,6 @@
 package com.seeingaitests.clothing;
 
+import com.abhilash.visiontesting.JsonLoader;
 import com.seeingaitests.utils.SetUpUtil;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -14,6 +15,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.time.Duration;
+import java.util.Map;
 
 public class FormalWearTest {
 
@@ -21,8 +23,11 @@ public class FormalWearTest {
 
     private WebDriverWait wait;
 
+    private Map<String, String> expectedMap;
+
     @BeforeSuite
     public void setUp() {
+        expectedMap = JsonLoader.loadTestCases("expected.json");
         driver = SetUpUtil.getDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         SetUpUtil.skipButton(wait);
@@ -37,7 +42,7 @@ public class FormalWearTest {
     @Test(priority = 1)
     public void testBlackJacket() {
         SetUpUtil.sharePhoto(wait);
-        String expectedResult = "black jacket";
+        String expectedResult = expectedMap.get("black_jacket");
         String actualResult = SetUpUtil.getResults(wait, expectedResult);
         SetUpUtil.goBack(wait);
         SetUpUtil.swipeToNextImage(driver, wait);
@@ -47,7 +52,7 @@ public class FormalWearTest {
     @Test(priority = 2)
     public void testDress1() {
         SetUpUtil.sharePhoto(wait);
-        String expectedResult = "dress";
+        String expectedResult = expectedMap.get("dress");
         String actualResult = SetUpUtil.getResults(wait, expectedResult);
         SetUpUtil.goBack(wait);
         SetUpUtil.swipeToNextImage(driver, wait);
@@ -56,7 +61,7 @@ public class FormalWearTest {
     @Test(priority = 3)
     public void testBlackSuit() {
         SetUpUtil.sharePhoto(wait);
-        String expectedResult = "black suit";
+        String expectedResult = expectedMap.get("black_suit");
         String actualResult = SetUpUtil.getResults(wait, expectedResult);
         SetUpUtil.goBack(wait);
         SetUpUtil.swipeToNextImage(driver, wait);
@@ -65,7 +70,7 @@ public class FormalWearTest {
     @Test(priority = 4)
     public void testDress() {
         SetUpUtil.sharePhoto(wait);
-        String expectedResult = "dress";
+        String expectedResult = expectedMap.get("dress");
         String actualResult = SetUpUtil.getResults(wait, expectedResult);
         SetUpUtil.goBack(wait);
         SetUpUtil.swipeToNextImage(driver, wait);
@@ -74,7 +79,7 @@ public class FormalWearTest {
     @Test(priority = 5)
     public void testGreyJacket() {
         SetUpUtil.sharePhoto(wait);
-        String expectedResult = "grey jacket";
+        String expectedResult = expectedMap.get("grey_jacket");
         String actualResult = SetUpUtil.getResults(wait, expectedResult);
         SetUpUtil.goBack(wait);
         SetUpUtil.swipeToNextImage(driver, wait);

@@ -32,12 +32,6 @@
             <version>4.20.0</version>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.10.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.1</version>
@@ -52,6 +46,12 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version> <!-- Use the latest version available -->
         </dependency>
-
+        <dependency>
+            <groupId>com.abhilash</groupId>
+            <artifactId>computer-vision-testing</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/computer-vision-testing-library.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
